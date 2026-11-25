@@ -1,7 +1,8 @@
 import { api } from "./client";
 import type { Page } from "../types";
 
-export const RESOURCE = "MentoresUtec";
+
+export const RESOURCE = "mentors";
 
 export type Item = {
   id: number;
@@ -17,13 +18,15 @@ export type Detail = Item & {
 };
 
 export type ActionBody = {
-  slotId: number;
-  attendees: number;
+  description: string;
 };
 
 export type ActionResult = {
-  slotId: number;
-  attendees: number;
+  id: number;
+  resourceId: number;
+  resourceName: string;
+  topic: string;
+  status: string;
 };
 
 export async function list(page: number, size = 5) {
@@ -37,6 +40,6 @@ export async function getById(id: string | number) {
 }
 
 export async function sendAction(id: string | number, body: ActionBody) {
-  const { data } = await api.post<ActionResult>(`/api/${RESOURCE}/${id}/reservations`, body);
+  const { data } = await api.post<ActionResult>(`/api/${RESOURCE}/${id}/requests`, body);
   return data;
 }
