@@ -1,14 +1,15 @@
 import { api } from "./client";
 import type { Page } from "../types";
 
-export const RESOURCE = "spaces";
+export const RESOURCE = "MentoresUtec";
 
 export type Item = {
   id: number;
   name: string;
-  campus: string;
-  capacity: number;
+  speciality: string;
+  modality: string;
   availableSlots: number;
+  description: string;
 };
 
 export type Detail = Item & {
